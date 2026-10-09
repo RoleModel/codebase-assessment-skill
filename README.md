@@ -5,8 +5,8 @@ The Vibe Check skill RoleModel uses to assess apps built with AI coding tools.
 ```
 vibe-check/
   SKILL.md               # instructions
-  references/checks.md   # what gets checked
-  references/verdicts.md # how the verdict and score are picked
+  references/steps.md    # the steps the check walks through
+  references/verdicts.md # Ship / Harden / Rebuild / Retire
   stacks/*.md            # stack-specific notes
   templates/report.md    # output contract the website renders
 ```
