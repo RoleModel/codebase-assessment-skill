@@ -5,7 +5,7 @@ Return **only** JSON in this shape. The website renders it directly.
 ```json
 {
   "stack": "React + Vite, Supabase, Stripe",
-  "verdict": "harden",
+  "verdict": "fix_before_launch",
   "summary": "Two or three plain-language sentences: what works, what has to change before real users or payments, and how big the fixes are.",
   "findings": [
     {
@@ -32,6 +32,7 @@ Return **only** JSON in this shape. The website renders it directly.
 }
 ```
 
+- `verdict` is exactly one of `ready`, `fix_before_launch`, `rework_foundation`, or `do_not_launch`.
 - `step` is one of the ids in `references/steps.md`. Give every step at least one finding, in step order.
 - `evidence` is `verified` or `inferred`.
 - `fix` is only on `risk` findings: one sentence the owner can paste into their AI agent.
