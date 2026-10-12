@@ -17,7 +17,7 @@ Work through the steps in `references/steps.md` in order. Each step produces fin
 - Load the matching file in `stacks/` once you know the stack.
 - If something can't be judged from the repo (dashboard settings, production config, real traffic), don't guess — add it to **What we couldn't determine**.
 - Pick the verdict with `references/verdicts.md`.
-- Write the report in the shape of `templates/report.md`.
+- Write the report in the shape of `templates/report.md`, including the `architecture` map. Mark the boxes and arrows where the risks live.
 
 ## Tone
 

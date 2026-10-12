@@ -28,12 +28,42 @@ Return **only** JSON in this shape. The website renders it directly.
   ],
   "unknowns": [
     "Row-level security policies set in the Supabase dashboard rather than in migrations"
-  ]
+  ],
+  "architecture": {
+    "groups": [{ "id": "supabase", "title": "SUPABASE — court-booker" }],
+    "nodes": [
+      { "id": "browser", "title": "Browser / PWA", "lines": ["React + Vite", "members (phone, desktop)"] },
+      { "id": "app", "title": "src/ (Vite bundle)", "lines": ["React Router · 9 pages", "src/lib/stripe.ts", "reads VITE_STRIPE_SECRET_KEY"], "tone": "risk" },
+      { "id": "auth", "title": "Supabase Auth", "group": "supabase", "lines": ["email + password"] },
+      { "id": "db", "title": "Postgres", "group": "supabase", "lines": ["4 tables", "RLS on bookings only"], "tone": "risk" },
+      { "id": "fns", "title": "Edge Functions", "group": "supabase", "lines": ["3 functions", "stripe-webhook"] },
+      { "id": "stripe", "title": "Stripe", "lines": ["Checkout · webhook"] }
+    ],
+    "edges": [
+      { "from": "browser", "to": "app", "label": "loads" },
+      { "from": "app", "to": "auth", "label": "sign in" },
+      { "from": "app", "to": "db", "label": "reads members table", "tone": "risk" },
+      { "from": "app", "to": "stripe", "label": "Checkout with secret key", "tone": "risk" },
+      { "from": "stripe", "to": "fns", "label": "webhook" },
+      { "from": "fns", "to": "db", "label": "marks booking paid" }
+    ]
+  }
 }
 ```
+
+## Architecture map
+
+`architecture` is a box-and-arrow map of the app as it exists in the repo. The website draws it. Build it during the `map` step and refine it as the flows become clear.
+
+- `nodes`: 3–10 boxes. Each is a real part of the system: the browser or client, the app or server code, the database, auth, background functions, and every outside service (payments, email, AI APIs). `title` is short. `lines` are 1–4 short facts about that box (framework, counts, the file that matters, a port). Use real names from the repo.
+- `edges`: arrows between node ids. `label` says what moves or why (`"loads"`, `"webhook"`, `"reads members table"`). `from` must point at the box that starts the call.
+- `groups`: optional. Boxes that live in one place (a container, a cloud project, a hosting account) share a `group` id. `title` names that place.
+- `tone` on a node or an edge: `"risk"` marks where a `risk` finding lives, `"focus"` marks the piece a human must act on. Leave it out otherwise.
+- Keep it honest: only boxes and arrows you can point to in the code. Something you can't confirm goes in `unknowns`, not on the map.
 
 - `verdict` is exactly one of `ready`, `fix_before_launch`, `rework_foundation`, or `do_not_launch`.
 - `step` is one of the ids in `references/steps.md`. Give every step at least one finding, in step order.
 - `evidence` is `verified` or `inferred`.
 - `fix` is only on `risk` findings: one sentence the owner can paste into their AI agent.
 - 6–14 findings. 2–5 unknowns.
+- `architecture` is always present. See below.
