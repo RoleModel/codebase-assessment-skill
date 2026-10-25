@@ -1,6 +1,6 @@
 # Steps
 
-Run these in order. Each finding has a `kind`:
+Run these in order. They are the eight Assessment Areas on the website, so every report covers all eight. Each finding has a `kind`:
 
 - `note` — context worth knowing (what the app is, how a flow works)
 - `good` — something done well
@@ -8,9 +8,11 @@ Run these in order. Each finding has a `kind`:
 
 | step | Label | What to look for |
 |---|---|---|
-| `map` | Map the app | Framework, hosting, database, number of tables/routes/functions, where it was built (Lovable, Bolt, etc.). One `note`. Also fill in `architecture` (the box-and-arrow map in `templates/report.md`): one box per real part of the system, one arrow per call between them. |
-| `flows` | Trace user and data flows | Follow the main user flow end to end (sign-up, the core action, payment). Write it as a chain: `/book → createBooking() → bookings table → Stripe Checkout → webhook`. |
-| `stack` | Check the stack | Outdated, abandoned or unused packages; mismatched versions; risky dependencies. |
-| `security` | Credentials and security | Committed secrets, secret keys in client code, missing row-level security, unscoped queries, unverified webhooks, prices from the client. |
-| `tests` | Tests and docs | Automated tests around sign-in, payments and core data changes; a README someone else could follow. |
-| `history` | Read the git history | Who commits, how often, how big the commits are, signs of one-shot generation vs. steady work, reverted or abandoned work. |
+| `map` | Application map | Framework, services, database, integrations, and major functional areas. Hosting, number of tables/routes/functions, where it was built (Lovable, Bolt, etc.). One `note`. Also fill in `architecture` (the box-and-arrow map in `templates/report.md`): one box per real part of the system, one arrow per call between them. |
+| `journeys` | Customer journeys | Registration, core product actions, administration, and payment. Follow each end to end and write it as a chain: `/book → createBooking() → bookings table → Stripe Checkout → webhook`. Flag steps that can fail silently or let two users collide. |
+| `data` | Information movement | How customer and company data enters, moves through, and leaves the application: forms and APIs in; tables, files and logs; emails, exports, analytics, AI and other outside services out. Flag personal data in logs, URLs or third-party calls. |
+| `access` | Access and privacy | Authentication, authorization, credentials, permissions, and private information. Committed secrets, secret keys in client code, missing row-level security, unscoped queries, admin pages without role checks. |
+| `payments` | Payment integrity | Whether pricing and transaction decisions are controlled and verified securely. Prices or totals sent from the browser, unverified webhooks, order state the client can change, charges that can run twice. If the app takes no payments, one `note` saying so. |
+| `dependencies` | Technology health | Outdated, abandoned, conflicting, or unnecessarily risky dependencies. Mismatched versions, unused packages, packages with known problems. |
+| `quality` | Quality safeguards | Tests, failure handling, documentation, and protection against regressions. Automated tests around sign-in, payments and core data changes; error handling on outside calls; CI; a README someone else could follow. |
+| `history` | Maintenance signals | Development history, ongoing ownership, unstable changes, and abandoned work. Who commits, how often, how big the commits are, one-shot generation vs. steady work, reverted or half-finished features. |

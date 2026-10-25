@@ -17,7 +17,7 @@ Return **only** JSON in this shape. The website renders it directly.
       "evidence": "verified"
     },
     {
-      "step": "security",
+      "step": "access",
       "kind": "risk",
       "title": "Stripe secret key ships to the browser",
       "detail": "src/lib/stripe.ts reads VITE_STRIPE_SECRET_KEY, so the key is bundled into the front end.",
@@ -65,5 +65,5 @@ Return **only** JSON in this shape. The website renders it directly.
 - `step` is one of the ids in `references/steps.md`. Give every step at least one finding, in step order.
 - `evidence` is `verified` or `inferred`.
 - `fix` is only on `risk` findings: one sentence the owner can paste into their AI agent.
-- 6–14 findings. 2–5 unknowns.
+- 8–16 findings. 2–5 unknowns.
 - `architecture` is always present. See below.
