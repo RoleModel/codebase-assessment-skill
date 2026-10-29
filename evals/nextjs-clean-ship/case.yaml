@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: nextjs-clean-ship
+expected_outcome: |
+  A ship verdict that credits the verified Stripe webhook, server-side prices and per-user order scoping, and does not invent blocking risks.
+context:
+  scaffold_script: place-files.sh

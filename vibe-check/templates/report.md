@@ -32,7 +32,12 @@ Return **only** JSON in this shape. The website renders it directly.
 }
 ```
 
+- `stack` is a short list a non-developer would recognize.
+- `verdict` is one of the ids in `references/verdicts.md`.
 - `step` is one of the ids in `references/steps.md`. Give every step at least one finding, in step order.
+- `kind` is `note`, `good`, or `risk`.
+- `files` holds repo paths, with `:line` when there is one. Never a secret's value.
 - `evidence` is `verified` or `inferred`.
-- `fix` is only on `risk` findings: one sentence the owner can paste into their AI agent.
+- `fix` is only on `risk` findings: one sentence the owner can paste into their AI agent, starting `Prompt for your agent:`.
 - 6–14 findings. 2–5 unknowns.
+- Keep the keys and their names as shown. The website breaks on any other shape.

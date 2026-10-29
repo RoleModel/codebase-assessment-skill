@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: rails-no-user-model
+expected_outcome: |
+  A rebuild verdict: no user model, orders not tied to anyone, a shared hard-coded password, permit!, and a master key in git history, without printing the key.
+context:
+  scaffold_script: place-files.sh
