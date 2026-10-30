@@ -5,7 +5,7 @@ Return **only** JSON in this shape. The website renders it directly.
 ```json
 {
   "stack": "React + Vite, Supabase, Stripe",
-  "verdict": "fix_before_launch",
+  "verdict": "harden",
   "summary": "Two or three plain-language sentences: what works, what has to change before real users or payments, and how big the fixes are.",
   "findings": [
     {
@@ -53,7 +53,7 @@ Return **only** JSON in this shape. The website renders it directly.
 
 ## Architecture map
 
-`architecture` is a box-and-arrow map of the app as it exists in the repo. The website draws it. Build it during the `map` step and refine it as the flows become clear.
+`architecture` is a box-and-arrow map of the app as it exists in the repo. The website draws it. Build it during the `map` step and refine it as the journeys become clear.
 
 - `nodes`: 3–10 boxes. Each is a real part of the system: the browser or client, the app or server code, the database, auth, background functions, and every outside service (payments, email, AI APIs). `title` is short. `lines` are 1–4 short facts about that box (framework, counts, the file that matters, a port). Use real names from the repo.
 - `edges`: arrows between node ids. `label` says what moves or why (`"loads"`, `"webhook"`, `"reads members table"`). `from` must point at the box that starts the call.
@@ -61,9 +61,15 @@ Return **only** JSON in this shape. The website renders it directly.
 - `tone` on a node or an edge: `"risk"` marks where a `risk` finding lives, `"focus"` marks the piece a human must act on. Leave it out otherwise.
 - Keep it honest: only boxes and arrows you can point to in the code. Something you can't confirm goes in `unknowns`, not on the map.
 
-- `verdict` is exactly one of `ready`, `fix_before_launch`, `rework_foundation`, or `do_not_launch`.
+## Rules
+
+- `stack` is a short list a non-developer would recognize.
+- `verdict` is exactly one of `ship`, `harden`, `rebuild`, or `retire`. See `references/verdicts.md`.
 - `step` is one of the ids in `references/steps.md`. Give every step at least one finding, in step order.
+- `kind` is `note`, `good`, or `risk`.
+- `files` holds repo paths, with `:line` when there is one. Never a secret's value.
 - `evidence` is `verified` or `inferred`.
-- `fix` is only on `risk` findings: one sentence the owner can paste into their AI agent.
+- `fix` is only on `risk` findings: one sentence the owner can paste into their AI agent, starting `Prompt for your agent:`.
 - 8–16 findings. 2–5 unknowns.
-- `architecture` is always present. See below.
+- `architecture` is always present. See "Architecture map" above.
+- Keep the keys and their names as shown. The website breaks on any other shape.
