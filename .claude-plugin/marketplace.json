@@ -1,0 +1,24 @@
+{
+  "name": "codebase-assessment",
+  "description": "RoleModel Software skills for Claude",
+  "owner": {
+    "name": "RoleModel Software",
+    "url": "https://rolemodelsoftware.com"
+  },
+  "plugins": [
+    {
+      "name": "codebase-assessment",
+      "displayName": "Codebase Assessment",
+      "source": "./",
+      "description": "Assess an app built with an AI coding tool and get a Ship, Harden, Rebuild, or Retire verdict with file-level findings.",
+      "version": "1.0.0",
+      "author": { "name": "RoleModel Software" },
+      "homepage": "https://github.com/RoleModel/codebase-assessment-skill",
+      "repository": "https://github.com/RoleModel/codebase-assessment-skill",
+      "license": "MIT",
+      "keywords": ["codebase assessment", "vibe check", "code review", "lovable", "bolt", "v0", "security"],
+      "category": "development",
+      "skills": ["./codebase-assessment"]
+    }
+  ]
+}
