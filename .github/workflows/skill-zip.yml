@@ -1,0 +1,26 @@
+# Builds codebase-assessment.zip, the file people upload in Claude Desktop or claude.ai
+# (Customize > Skills), and attaches it to the "latest" release so the README link never changes.
+name: Skill zip
+
+on:
+  push:
+    branches: [main]
+    paths: [codebase-assessment/**]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: zip -r codebase-assessment.zip codebase-assessment -x '*.DS_Store'
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view latest >/dev/null 2>&1 \
+            || gh release create latest --title "Codebase Assessment skill" \
+                 --notes "Upload codebase-assessment.zip in Claude Desktop or claude.ai under Customize > Skills."
+          gh release upload latest codebase-assessment.zip --clobber
