@@ -11,17 +11,25 @@
   "license": "MIT",
   "keywords": ["codebase assessment", "vibe check", "code review", "lovable", "bolt", "v0", "security"],
   "skills": "./",
+  "requires_local_executor": true,
   "interface": {
     "displayName": "Codebase Assessment",
-    "shortDescription": "Ship, Harden, Rebuild, or Retire",
-    "longDescription": "Checks an app built mostly with an AI coding tool (Lovable, Bolt, v0, Replit, Cursor, Claude Code) across RoleModel's eight Assessment Areas and returns a verdict with file-level findings and an architecture map.",
+    "shortDescription": "Ship, Harden, Rebuild, Retire",
+    "longDescription": "Checks an app built mostly with an AI coding tool (Lovable, Bolt, v0, Replit, Cursor, Claude Code) across RoleModel's eight Assessment Areas and returns a Ship, Harden, Rebuild, or Retire verdict with file-level findings and an architecture map. It reads the code on your computer and makes no network calls of its own.",
     "developerName": "RoleModel Software",
-    "category": "Coding",
+    "category": "Developer Tools",
     "capabilities": [],
+    "logo": "./assets/logo.png",
+    "composerIcon": "./assets/composer-icon.png",
     "defaultPrompt": [
-      "Run a codebase assessment on this repo"
+      "Run a codebase assessment on this repo",
+      "Is this app ready for real users?",
+      "Is it safe to take payments with this app?"
     ],
     "websiteURL": "https://rolemodelsoftware.com",
+    "supportURL": "https://github.com/RoleModel/codebase-assessment-skill/issues",
+    "privacyPolicyURL": "https://rolemodelsoftware.com/privacy-policy",
+    "termsOfServiceURL": "https://github.com/RoleModel/codebase-assessment-skill/blob/main/LICENSE",
     "screenshots": []
   }
 }

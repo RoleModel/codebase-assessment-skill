@@ -61,5 +61,6 @@ The skill stays in `codebase-assessment/`, because the API reads it from there. 
 - `.claude-plugin/marketplace.json`: Claude Code plugin marketplace.
 - `.codex-plugin/plugin.json` and `.agents/plugins/marketplace.json`: Codex and ChatGPT plugin.
 - `.github/workflows/skill-zip.yml`: builds the zip for Claude Desktop and claude.ai on each change to the skill.
+- `scripts/build-openai-zip.sh`: builds the zip for the OpenAI plugin directory. [docs/openai-submission.md](docs/openai-submission.md) has the steps and the review answers.
 
 When you change the skill, bump `version` in `.claude-plugin/marketplace.json` and `.codex-plugin/plugin.json` so installed copies update.
